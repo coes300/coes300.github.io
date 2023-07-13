@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Machine Learning Models for Australian Football League Game Predictions</title>
+</head>
+<body>
+    <h1>Advanced Machine Learning Models for Australian Football League Game Predictions</h1>
+    <h2>Project Overview</h2>
+    <p>
+        The scope of this project revolves around the prediction of future Australian Football League (AFL) games using sophisticated machine learning models. The objective is to forecast game outcomes accurately and improve predictive performance by leveraging both basic and advanced machine learning techniques.
+    </p>
+    <p>
+        The primary dataset consists of AFL game-by-game results from 1965 to 2022. The data preprocessing, model creation, and subsequent training and testing processes are broken down into four python scripts: data.py, ridgeregression.py, xg_basic.py, and xg_adv.py.
+    </p>
+    <h2>Data Preprocessing - data.py</h2>
+    <p>
+        The initial step in our data processing pipeline involves data cleaning, transformation, and feature engineering. To accomplish this, we rely on the python script data.py.
+    </p>
+    <p>
+        The raw dataset is loaded from a CSV file 'afl_game_by_game_results_1965_2022.csv'. Several columns, mostly focused on specific game events like 'tackles', 'rebound_50s', 'inside_50s', 'clearances', etc., are removed to reduce complexity and dimensionality. The dataset is then sorted by 'year' and 'round' to maintain chronological order.
+    </p>
+    <p>
+        Subsequently, specific columns like 'goals' and 'behinds' are split into separate features for each team. Furthermore, additional fields such as 'team_score' and 'opponent_score' are derived from these. A binary target feature 'won' is created, signifying whether the team won the match or not.
+    </p>
+    <p>
+        Columns containing numeric game data are split into team and opponent specific statistics. The dataframe is then grouped by the 'team' column, and the 'target' feature is shifted to align with future games, representing our prediction target. Finally, any rows containing missing values in key columns are removed.
+    </p>
+    <h2>Ridge Regression - ridgeregression.py</h2>
+    <p>
+        In the ridgeregression.py script, we use the Ridge Regression model, a regularized linear regression model that can prevent overfitting and handle multicollinearity in data. This script implements a time-series cross-validation method to assess the predictive performance of the model over time. In addition, it uses Sequential Feature Selector for optimal feature selection.
+    </p>
+    <p>
+        To account for potential temporal dependencies between games, a 'rolling window' strategy is used where the model's state is updated incrementally as new game data becomes available. The model is trained and evaluated using this rolling-window strategy, yielding a predictive accuracy score.
+    </p>
+    <h2>Basic XGBoost Model - xg_basic.py</h2>
+    <p>
+        The xg_basic.py script introduces a Gradient Boosting model using XGBoost (eXtreme Gradient Boosting), a powerful machine learning algorithm based on the gradient boosting framework. It is especially known for its speed and performance.
+    </p>
+    <p>
+        Similar to the Ridge Regression model, data are initially preprocessed and scaled, while the model is trained on data before 2019 and tested on games from 2019 onwards. The script then evaluates the model's predictive accuracy.
+    </p>
+    <h2>Advanced XGBoost Model - xg_adv.py</h2>
+    <p>
+        The xg_adv.py script takes a more advanced approach using the XGBoost model. The first step involves scaling and preprocessing the data similarly to the previous scripts. Then, the script uses the GridSearchCV method to tune the hyperparameters of the XGBoost model using a time series cross-validation strategy.
+    </p>
+    <p>
+        Once the optimal hyperparameters are identified, the model is retrained with these settings and used to predict the outcomes of games from 2019 onwards. The model's performance is evaluated based on its accuracy. Lastly, a 'walk-forward' validation strategy is used, wherein the model is incrementally updated with each new game data, ensuring the model learns from the most recent data at each prediction step.
+    </p>
+    <h2>Key Insights and Outcomes</h2>
+    <p>
+        Throughout the scripts, different methods and techniques were applied to predict the outcomes of AFL games accurately. Ridge regression, XGBoost, and their respective variations, provided varying degrees of accuracy, with the advanced XGBoost model exhibiting the highest accuracy.
+    </p>
+    <p>
+        The project emphasized the critical role of data preprocessing and feature engineering, showcasing how strategic manipulations can extract valuable predictive insights. Furthermore, the importance of cross-validation and hyperparameter tuning in improving the predictive performance of machine learning models was highlighted.
+    </p>
+    <p>
+        Overall, this project provided a comprehensive approach to predicting AFL games using advanced machine learning models, demonstrating the power and versatility of these techniques in dealing with complex predictive tasks.
+    </p>
+</body>
+</html>
