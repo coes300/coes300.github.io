@@ -7,10 +7,10 @@
     <h1>Testing Machine Learning Models for Australian Football League Game Predictions</h1>
     <h2>Project Overview</h2>
     <p>
-        Originally made for the use in a weekly tipping league, the objective was to leverage machine learning techniques in predicting future AFL games using machine learning models.
+        Originally made for use in a weekly tipping league, the objective was to leverage machine learning techniques to predict future AFL games using machine learning models.
     </p>
     <p>
-        The primary dataset, downloaded from <a href="https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022">kaggle</a>
+        The primary dataset, downloaded from <a href="https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022">kaggle</a>,
         consists of AFL game-by-game results from 1965 to 2022. The data preprocessing, model creation, and subsequent training and testing processes are broken down into four python scripts: data.py, ridgeregression.py, xg_basic.py, and xg_adv.py.
     </p>
     <h2>Data Preprocessing - data.py</h2>
@@ -55,7 +55,7 @@
         All three scripts aim to predict a target variable based on various features, but they use different strategies and models. 
 
 The accuracy of the models varies, with the Ridge Classifier obtaining an accuracy of 0.605, the basic XGBoost model obtaining an accuracy of 0.572, and the advanced XGBoost model obtaining an accuracy of 
-        0.680 (before walk-forward validation, after which the accuracy drops to 0.487). This indicates that the advanced XGBoost model (before walk-forward validation) are the most accurate.
+        0.680 (before walk-forward validation, after which the accuracy drops to 0.487). This indicates that the advanced XGBoost model (before walk-forward validation) is the most accurate.
     </p>
 </body>
 </html>
