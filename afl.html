@@ -7,7 +7,8 @@
     <h1>Testing Machine Learning Models for Australian Football League Game Predictions</h1>
     <h2>Project Overview</h2>
     <p>
-        The scope of this project revolves around the prediction of future Australian Football League (AFL) games using sophisticated machine learning models. The objective is to forecast game outcomes accurately and improve predictive performance by leveraging both basic and advanced machine learning techniques.
+        The scope of this project revolves around the prediction of future Australian Football League (AFL) games using sophisticated machine learning models. 
+        Originally mThe objective is to forecast game outcomes accurately and improve predictive performance by leveraging both basic and advanced machine learning techniques.
     </p>
     <p>
         The primary dataset consists of AFL game-by-game results from 1965 to 2022. The data preprocessing, model creation, and subsequent training and testing processes are broken down into four python scripts: data.py, ridgeregression.py, xg_basic.py, and xg_adv.py.
@@ -34,21 +35,24 @@
     </p>
     <h2>Basic XGBoost Model - xg_basic.py</h2>
     <p>
-        The xg_basic.py script introduces a Gradient Boosting model using XGBoost (eXtreme Gradient Boosting), a powerful machine learning algorithm based on the gradient boosting framework. It is especially known for its speed and performance.
+        The xg_basic.py script introduces a Gradient Boosting model using XGBoost (eXtreme Gradient Boosting), a machine learning algorithm based on the gradient boosting framework.
     </p>
     <p>
-        Similar to the Ridge Regression model, data are initially preprocessed and scaled, while the model is trained on data before 2019 and tested on games from 2019 onwards. The script then evaluates the model's predictive accuracy.
+         XGBoost classifier. The XGBoost algorithm is an ensemble learning method, which often provides high predictive accuracy.
+
+        In this script, certain columns are dropped from the data, and then the remaining columns are scaled using a MinMaxScaler. 
+        The model is trained on data from years before 2019 and tested on data from years 2019 and onwards. After this, predictions are made and the accuracy is calculated, obtaining a value of 0.572.
     </p>
     <h2>Advanced XGBoost Model - xg_adv.py</h2>
     <p>
-        The xg_adv.py script takes a more advanced approach using the XGBoost model. The first step involves scaling and preprocessing the data similarly to the previous scripts. Then, the script uses the GridSearchCV method to tune the hyperparameters of the XGBoost model using a time series cross-validation strategy.
+        This script is an advanced version of the previous XGBoost script. It includes a grid search cross-validation strategy to identify the best hyperparameters for the XGBoost model. 
+        The parameter grid includes different values for max_depth, learning_rate, n_estimators, min_child_weight, gamma, subsample, and colsample_bytree.
     </p>
     <p>
         Once the optimal hyperparameters are identified, the model is retrained with these settings and used to predict the outcomes of games from 2019 onwards. The model's performance is evaluated based on its accuracy. 
         Walk-forward validation was utilized to simulate a real-world scenario where the model is updated as new data becomes available. For each game in the test set, the model was retrained with all the data available up to that game and then made a prediction for the game's outcome. 
     <p>
-        All three scripts aim to predict a target variable based on various features, but they use different strategies and models. The ridgeregression.py script uses a Ridge Classifier and a backtesting strategy to evaluate the model's performance. 
-        The xg_basic script uses an XGBoost classifier and splits the data into training and testing sets based on the year. The xg_adv script uses the same type of model, but it also includes hyperparameter tuning and a walk-forward validation strategy.
+        All three scripts aim to predict a target variable based on various features, but they use different strategies and models. 
 
 The accuracy of the models varies, with the Ridge Classifier obtaining an accuracy of 0.605, the basic XGBoost model obtaining an accuracy of 0.572, and the advanced XGBoost model obtaining an accuracy of 
         0.680 (before walk-forward validation, after which the accuracy drops to 0.487). This indicates that the advanced XGBoost model (before walk-forward validation) are the most accurate.
