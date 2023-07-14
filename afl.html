@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Advanced Machine Learning Models for Australian Football League Game Predictions</title>
+    <title>Testing Machine Learning Models for Australian Football League Game Predictions</title>
 </head>
 <body>
-    <h1>Advanced Machine Learning Models for Australian Football League Game Predictions</h1>
+    <h1>Testing Machine Learning Models for Australian Football League Game Predictions</h1>
     <h2>Project Overview</h2>
     <p>
         The scope of this project revolves around the prediction of future Australian Football League (AFL) games using sophisticated machine learning models. The objective is to forecast game outcomes accurately and improve predictive performance by leveraging both basic and advanced machine learning techniques.
@@ -44,9 +44,8 @@
         The xg_adv.py script takes a more advanced approach using the XGBoost model. The first step involves scaling and preprocessing the data similarly to the previous scripts. Then, the script uses the GridSearchCV method to tune the hyperparameters of the XGBoost model using a time series cross-validation strategy.
     </p>
     <p>
-        Once the optimal hyperparameters are identified, the model is retrained with these settings and used to predict the outcomes of games from 2019 onwards. The model's performance is evaluated based on its accuracy. Lastly, a 'walk-forward' validation strategy is used, wherein the model is incrementally updated with each new game data, ensuring the model learns from the most recent data at each prediction step.
-    </p>
-    <h2>Key Insights and Outcomes</h2>
+        Once the optimal hyperparameters are identified, the model is retrained with these settings and used to predict the outcomes of games from 2019 onwards. The model's performance is evaluated based on its accuracy. 
+        Walk-forward validation was utilized to simulate a real-world scenario where the model is updated as new data becomes available. For each game in the test set, the model was retrained with all the data available up to that game and then made a prediction for the game's outcome. 
     <p>
         All three scripts aim to predict a target variable based on various features, but they use different strategies and models. The ridgeregression.py script uses a Ridge Classifier and a backtesting strategy to evaluate the model's performance. 
         The xg_basic script uses an XGBoost classifier and splits the data into training and testing sets based on the year. The xg_adv script uses the same type of model, but it also includes hyperparameter tuning and a walk-forward validation strategy.
