@@ -27,10 +27,10 @@
     </p>
     <h2>Ridge Regression - ridgeregression.py</h2>
     <p>
-        In the ridgeregression.py script, we use the Ridge Regression model, a regularized linear regression model that can prevent overfitting and handle multicollinearity in data. This script implements a time-series cross-validation method to assess the predictive performance of the model over time. In addition, it uses Sequential Feature Selector for optimal feature selection.
-    </p>
-    <p>
-        To account for potential temporal dependencies between games, a 'rolling window' strategy is used where the model's state is updated incrementally as new game data becomes available. The model is trained and evaluated using this rolling-window strategy, yielding a predictive accuracy score.
+    The ridgeregression.py script adopts the Ridge Regression model, a regularized linear regression variant that combats overfitting and handles multicollinearity. 
+        The model uses a time-series cross-validation method and Sequential Feature Selector for optimal performance assessment and feature selection. 
+        A rolling-window strategy is used to account for potential temporal dependencies between games, training, and evaluating the model incrementally as new game data becomes available. 
+        The predictive accuracy of this approach is observed to be 0.605.
     </p>
     <h2>Basic XGBoost Model - xg_basic.py</h2>
     <p>
@@ -48,13 +48,11 @@
     </p>
     <h2>Key Insights and Outcomes</h2>
     <p>
-        Throughout the scripts, different methods and techniques were applied to predict the outcomes of AFL games accurately. Ridge regression, XGBoost, and their respective variations, provided varying degrees of accuracy, with the advanced XGBoost model exhibiting the highest accuracy.
-    </p>
-    <p>
-        The project emphasized the critical role of data preprocessing and feature engineering, showcasing how strategic manipulations can extract valuable predictive insights. Furthermore, the importance of cross-validation and hyperparameter tuning in improving the predictive performance of machine learning models was highlighted.
-    </p>
-    <p>
-        Overall, this project provided a comprehensive approach to predicting AFL games using advanced machine learning models, demonstrating the power and versatility of these techniques in dealing with complex predictive tasks.
+        All three scripts aim to predict a target variable based on various features, but they use different strategies and models. The ridgeregression.py script uses a Ridge Classifier and a backtesting strategy to evaluate the model's performance. 
+        The xg_basic script uses an XGBoost classifier and splits the data into training and testing sets based on the year. The xg_adv script uses the same type of model, but it also includes hyperparameter tuning and a walk-forward validation strategy.
+
+The accuracy of the models varies, with the Ridge Classifier obtaining an accuracy of 0.605, the basic XGBoost model obtaining an accuracy of 0.572, and the advanced XGBoost model obtaining an accuracy of 
+        0.680 (before walk-forward validation, after which the accuracy drops to 0.487). This indicates that the advanced XGBoost model (before walk-forward validation) are the most accurate.
     </p>
 </body>
 </html>
