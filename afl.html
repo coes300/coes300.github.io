@@ -33,16 +33,6 @@
         A rolling-window strategy is used to account for potential temporal dependencies between games, training, and evaluating the model incrementally as new game data becomes available. 
         The predictive accuracy of this approach is observed to be 0.605.
     </p>
-    <h2>Basic XGBoost Model - xg_basic.py</h2>
-    <p>
-        The xg_basic.py script introduces a Gradient Boosting model using XGBoost (eXtreme Gradient Boosting), a machine learning algorithm based on the gradient boosting framework.
-    </p>
-    <p>
-         XGBoost classifier. The XGBoost algorithm is an ensemble learning method, which often provides high predictive accuracy.
-
-        In this script, certain columns are dropped from the data, and then the remaining columns are scaled using a MinMaxScaler. 
-        The model is trained on data from years before 2019 and tested on data from years 2019 and onwards. After this, predictions are made and the accuracy is calculated, obtaining a value of 0.572.
-    </p>
     <h2>Advanced XGBoost Model - xg_adv.py</h2>
     <p>
         This script is an advanced version of the previous XGBoost script. It includes a grid search cross-validation strategy to identify the best hyperparameters for the XGBoost model. 
@@ -50,12 +40,28 @@
     </p>
     <p>
         Once the optimal hyperparameters are identified, the model is retrained with these settings and used to predict the outcomes of games from 2019 onwards. The model's performance is evaluated based on its accuracy. 
-        Walk-forward validation was utilized to simulate a real-world scenario where the model is updated as new data becomes available. For each game in the test set, the model was retrained with all the data available up to that game and then made a prediction for the game's outcome. 
+        the key performance metrics:
+    </p>
+    <p>
+        Accuracy: The model had an accuracy of 68.0%. This means that the model correctly predicted the outcome of 68% of the matches in the test dataset.
+    </p>
+    <p>    
+        Precision: The precision of the model was 67.1%. This indicates that when the model predicted a match outcome, it was correct about 67.1% of the time.    
+    </p>    
+    <p>
+        Recall: The model's recall was 68.0%. This implies that the model correctly identified 68% of all actual wins in the test dataset.
+    </p>    
+    <p>    
+        F1 Score: The F1 score of the model, which is a balance of precision and recall, was 67.0%.
+    </p>
+    <p> 
+        The model performed decently well, but there is scope for improvement.
+    </p>
     <p>
         All three scripts aim to predict a target variable based on various features, but they use different strategies and models. 
 
-The accuracy of the models varies, with the Ridge Classifier obtaining an accuracy of 0.605, the basic XGBoost model obtaining an accuracy of 0.572, and the advanced XGBoost model obtaining an accuracy of 
-        0.680 (before walk-forward validation, after which the accuracy drops to 0.487). This indicates that the advanced XGBoost model (before walk-forward validation) is the most accurate.
+The accuracy of the models varies, with the Ridge Classifier obtaining an accuracy of 0.605 and the XGBoost model obtaining an accuracy of 
+        0.680. This indicates that the XGBoost model is the most accurate.
     </p>
 </body>
 </html>
