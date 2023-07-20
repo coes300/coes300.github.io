@@ -7,25 +7,20 @@
     <h1>Testing Machine Learning Models for Australian Football League Game Predictions</h1>
     <h2>Project Overview</h2>
     <p>Originally made for use in a weekly tipping league, the objective was to leverage machine learning techniques to predict future AFL games using machine learning models.</p>
-    <img src="project_overview.png" alt="Project Overview Diagram">
 
     <h2>Dataset</h2>
     <p>The primary dataset was downloaded from <a href="https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022">kaggle</a>,
     and consists of AFL game-by-game results from 1965 to 2022.</p>
-    <img src="dataset_sample.png" alt="Sample Data">
     
     <h2>Data Preprocessing - data.py</h2>
     <h3>Data Cleaning</h3>
     <p>The raw dataset is loaded from a CSV file 'afl_game_by_game_results_1965_2022.csv'. Several columns, mostly focused on specific game events like 'tackles', 'rebound_50s', 'inside_50s', 'clearances', etc., are removed to reduce complexity and dimensionality. The dataset is then sorted by 'year' and 'round' to maintain chronological order.</p>
-    <img src="data_cleaning.png" alt="Data Cleaning Process">
 
     <h3>Feature Engineering</h3>
     <p>Specific columns like 'goals' and 'behinds' are split into separate features for each team. Furthermore, additional fields such as 'team_score' and 'opponent_score' are derived from these. A binary target feature 'won' is created, signifying whether the team won the match or not.</p>
-    <img src="feature_engineering.png" alt="Feature Engineering">
 
     <h3>Data Finalization</h3>
     <p>Columns containing numeric game data are split into team and opponent specific statistics. The dataframe is then grouped by the 'team' column, and the 'target' feature is shifted to align with future games, representing our prediction target. Finally, any rows containing missing values in key columns are removed.</p>
-    <img src="data_finalization.png" alt="Data Finalization">
 
     <h2>Ridge Regression - rr.py</h2>
     <h3>About Ridge Regression</h3>
