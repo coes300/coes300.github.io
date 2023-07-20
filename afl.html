@@ -6,71 +6,52 @@
 <body>
     <h1>Testing Machine Learning Models for Australian Football League Game Predictions</h1>
     <h2>Project Overview</h2>
-    <p>
-        Originally made for use in a weekly tipping league, the objective was to leverage machine learning techniques to predict future AFL games using machine learning models.
-    </p>
-    <p>
-        The primary dataset, downloaded from <a href="https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022">kaggle</a>,
-        consists of AFL game-by-game results from 1965 to 2022. The data preprocessing, model creation, and subsequent training and testing processes are broken down into four python scripts: data.py, ridgeregression.py, xg_basic.py, and xg_adv.py.
-    </p>
+    <p>Originally made for use in a weekly tipping league, the objective was to leverage machine learning techniques to predict future AFL games using machine learning models.</p>
+    <img src="project_overview.png" alt="Project Overview Diagram">
+
+    <h2>Dataset</h2>
+    <p>The primary dataset was downloaded from <a href="https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022">kaggle</a>,
+    and consists of AFL game-by-game results from 1965 to 2022.</p>
+    <img src="dataset_sample.png" alt="Sample Data">
+    
     <h2>Data Preprocessing - data.py</h2>
-    <p>
-        The initial step in our data processing pipeline involves data cleaning, transformation, and feature engineering. To accomplish this, we rely on the python script data.py.
-    </p>
-    <p>
-        The raw dataset is loaded from a CSV file 'afl_game_by_game_results_1965_2022.csv'. Several columns, mostly focused on specific game events like 'tackles', 'rebound_50s', 'inside_50s', 'clearances', etc., are removed to reduce complexity and dimensionality. The dataset is then sorted by 'year' and 'round' to maintain chronological order.
-    </p>
-    <p>
-        Subsequently, specific columns like 'goals' and 'behinds' are split into separate features for each team. Furthermore, additional fields such as 'team_score' and 'opponent_score' are derived from these. A binary target feature 'won' is created, signifying whether the team won the match or not.
-    </p>
-    <p>
-        Columns containing numeric game data are split into team and opponent specific statistics. The dataframe is then grouped by the 'team' column, and the 'target' feature is shifted to align with future games, representing our prediction target. Finally, any rows containing missing values in key columns are removed.
-    </p>
+    <h3>Data Cleaning</h3>
+    <p>The raw dataset is loaded from a CSV file 'afl_game_by_game_results_1965_2022.csv'. Several columns, mostly focused on specific game events like 'tackles', 'rebound_50s', 'inside_50s', 'clearances', etc., are removed to reduce complexity and dimensionality. The dataset is then sorted by 'year' and 'round' to maintain chronological order.</p>
+    <img src="data_cleaning.png" alt="Data Cleaning Process">
+
+    <h3>Feature Engineering</h3>
+    <p>Specific columns like 'goals' and 'behinds' are split into separate features for each team. Furthermore, additional fields such as 'team_score' and 'opponent_score' are derived from these. A binary target feature 'won' is created, signifying whether the team won the match or not.</p>
+    <img src="feature_engineering.png" alt="Feature Engineering">
+
+    <h3>Data Finalization</h3>
+    <p>Columns containing numeric game data are split into team and opponent specific statistics. The dataframe is then grouped by the 'team' column, and the 'target' feature is shifted to align with future games, representing our prediction target. Finally, any rows containing missing values in key columns are removed.</p>
+    <img src="data_finalization.png" alt="Data Finalization">
+
     <h2>Ridge Regression - rr.py</h2>
-    <p>
-        Ridge Regression, known also as RR, presents an alternative approach to the traditional least squares method of linear regression. Utilizing a unique form of penalty parameter, RR serves to control the complexity of the predictive model, thereby reducing potential overfitting. 
-        Inherent to this process is the minimization of a sum of squared residuals, in addition to the magnitude of regression coefficients. The distinctiveness of RR lies in the inclusion of a shrinkage penalty term, which multiplies the sum of the squared coefficients 
-        by a scalar known as the ridge parameter.
-    </p>    
-    <p>
-        The efficacy of RR stems from its optimization process. It reduces the variance of estimated regression parameters by adding a small bias, thereby trading off slight bias for a significant variance reduction. 
-        While simple linear regression models risk creating overly complex models due to high variance, RR mitigates such risks by introducing the penalty term into the cost function. This penalty term restricts the coefficients from reaching large values, 
-        reducing model complexity and helping to prevent overfitting.
-    </p>    
-    <p>
-        Assessing the results achieved with RR, an accuracy of 0.728 signifies that 72.8% of the model's predictions were correct. Precision, at 0.724, reflects that 72.4% of the instances identified as positive were indeed positive. 
-        A recall score of 0.732 denotes that 73.2% of actual positive instances were correctly classified. The F1 score, a harmonic mean of precision and recall,
-        stands at 0.728, suggesting a balanced model in terms of both precision and recall. Thus, RR, in this instance, performed effectively, demonstrating a strong balance between predicting true positives and reducing false positives.
-    </p>
+    <h3>About Ridge Regression</h3>
+    <p>Ridge Regression, known also as RR, presents an alternative approach to the traditional least squares method of linear regression. Utilizing a unique form of penalty parameter, RR serves to control the complexity of the predictive model, thereby reducing potential overfitting. 
+    Inherent to this process is the minimization of a sum of squared residuals, in addition to the magnitude of regression coefficients. The distinctiveness of RR lies in the inclusion of a shrinkage penalty term, which multiplies the sum of the squared coefficients by a scalar known as the ridge parameter.</p>
+    <img src="ridge_regression.png" alt="Ridge Regression">
+
+    <h3>RR Results</h3>
+    <p>Assessing the results achieved with RR, an accuracy of 0.728 signifies that 72.8% of the model's predictions were correct. Precision, at 0.724, reflects that 72.4% of the instances identified as positive were indeed positive. 
+    A recall score of 0.732 denotes that 73.2% of actual positive instances were correctly classified. The F1 score, a harmonic mean of precision and recall, stands at 0.728, suggesting a balanced model in terms of both precision and recall.</p>
+    <img src="rr_results.png" alt="Ridge Regression Results">
+
     <h2>Advanced XGBoost Model - xg.py</h2>
-    <p>
-        Extreme Gradient Boosting, or XG, embodies a powerful ensemble learning method in the realm of machine learning. Originating from the traditional gradient boosting framework, XG incorporates additional enhancements to optimize computational speed and model performance. 
-        This model employs a set of weak predictive models, typically decision trees, to generate a strong predictive model.
-    </p>    
-    <p>
-    A crucial component in the function of XG lies in the systematic application of gradient boosting techniques. These techniques iteratively add new models to correct errors made by existing models. Each new tree corrects residuals, not the target variable, 
-        enhancing model accuracy with each iteration.
-        Unlike conventional gradient boosting methods, XG includes regularization parameters for both tree complexity and leaf weights, significantly reducing overfitting.
-    </p>
-    <p>
-        Once the optimal hyperparameters are identified, the model is retrained with these settings and used to predict the outcomes of games from 2019 onwards. The model's performance is evaluated based on its accuracy. 
-        the key performance metrics:
-    </p>
-    <p>
-        As for the results obtained with XG, an accuracy of 0.680 implies that 68% of the model's predictions were correct. Precision stands at 0.671, indicating that 67.1% of identified positives were true positives. 
-        The model achieved a recall of 0.680, meaning it correctly identified 68% of all actual positives. The F1 score of 0.670 suggests a reasonable balance between precision and recall, albeit lower than the RR model. 
-        While XG might be a powerful model, in this case, RR performed with superior accuracy, precision, recall, and F1 scores.
-        Despite that, XG still delivers a respectable performance, providing versatility across a broad range of tasks.
-    </p>
+    <h3>About Extreme Gradient Boosting</h3>
+    <p>Extreme Gradient Boosting, or XG, embodies a powerful ensemble learning method in the realm of machine learning. Originating from the traditional gradient boosting framework, XG incorporates additional enhancements to optimize computational speed and model performance. 
+    This model employs a set of weak predictive models, typically decision trees, to generate a strong predictive model.</p>
+    <img src="xg_about.png" alt="About Extreme Gradient Boosting">
+
+    <h3>XG Results</h3>
+    <p>As for the results obtained with XG, an accuracy of 0.680 implies that 68% of the model's predictions were correct. Precision stands at 0.671, indicating that 67.1% of identified positives were true positives. 
+    The model achieved a recall of 0.680, meaning it correctly identified 68% of all actual positives. The F1 score of 0.670 suggests a reasonable balance between precision and recall.</p>
+    <img src="xg_results.png" alt="XG Results">
+
     <h2>Discussion</h2>
-    <p>
-        Upon comparison of the results, Ridge Regression demonstrated superior performance in this instance, with higher scores across accuracy, precision, recall, and the F1 score.
-        It showcased a robust model, successfully striking a balance between predicting true positives and reducing false positives. RR's strength lies in its ability to control model 
-        complexity and reduce potential overfitting, a crucial consideration for many machine learning applications.
-    </p>    
-    <p>
-        Extreme Gradient Boosting, despite trailing behind RR in this scenario, still delivered respectable results. As an ensemble learning method, 
-        XG offers the ability to tackle complex problems and provides versatility across various tasks. Its iterative nature allows the model to learn from its past mistakes, thereby improving accuracy over successive iterations.
-    </p>
+    <p>Upon comparison of the results, Ridge Regression demonstrated superior performance in this instance, with higher scores across accuracy, precision, recall, and the F1 score.
+    It showcased a robust model, successfully striking a balance between predicting true positives and reducing false positives.</p>
+    <img src="comparison_chart.png" alt="Comparison Chart">
 </body>
 </html>
